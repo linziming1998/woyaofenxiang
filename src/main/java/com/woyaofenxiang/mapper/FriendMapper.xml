@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woyaofenxiang.mapper.FriendMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woyaofenxiang.entity.Friend">
+        <id column="fid" property="fid" />
+        <result column="mid" property="mid" />
+        <result column="uid" property="uid" />
+        <result column="ftime" property="ftime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        fid, mid, uid, ftime
+    </sql>
+
+    <select id="getFriendList"  resultType="java.util.HashMap" parameterType="java.lang.String">
+        SELECT
+            f.fid,
+            f.uid,
+            f.fbeizhu,
+            u.uname,
+            u.uimage
+        FROM
+            friend f
+            LEFT JOIN userinfo u ON f.uid = u.uid
+        WHERE
+            f.mid = #{uid}
+        ORDER BY f.fbeizhu,u.uname
+    </select>
+    <select id="getFriendInfo"  resultType="java.util.HashMap" parameterType="java.lang.String">
+        SELECT
+            u.*,
+            f.fbeizhu
+        FROM
+            friend f
+            LEFT JOIN userinfo u ON f.uid = u.uid
+        WHERE
+            f.mid = #{mid}
+            AND f.uid = #{uid}
+    </select>
+
+</mapper>

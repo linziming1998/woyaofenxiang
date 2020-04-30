@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woyaofenxiang.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woyaofenxiang.entity.User">
+        <id column="uid" property="uid" />
+        <result column="uphone" property="uphone" />
+        <result column="upassword" property="upassword" />
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        uid, uphone, upassword
+    </sql>
+    <select id="getUserInfo" resultType="com.woyaofenxiang.entity.Userinfo" parameterType="java.lang.String">
+        SELECT
+            ui.*
+        FROM
+           userinfo ui left join user u
+           on u.uid=ui.uid
+        WHERE
+            u.uphone = #{num} || ui.usharenum= #{num}
+    </select>
+
+</mapper>

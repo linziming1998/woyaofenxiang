@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woyaofenxiang.mapper.ChatMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.woyaofenxiang.entity.Chat">
+        <id column="cid" property="cid" />
+        <result column="cfrom" property="cfrom" />
+        <result column="cto" property="cto" />
+        <result column="cmessage" property="cmessage" />
+        <result column="ctime" property="ctime" />
+        <result column="ctype" property="ctype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, cfrom, cto, cmessage, ctime, ctype
+    </sql>
+
+</mapper>
